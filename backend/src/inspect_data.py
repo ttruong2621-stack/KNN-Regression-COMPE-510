@@ -31,6 +31,15 @@ def main() -> None:
     print("\nSummary statistics:")
     print(data.describe())
 
+    # Remove duplicate to prevent identical samples appearing in both training and testing sets
+    data = pd.read_excel(DATA_PATH, engine="calamine")
+
+    print("Original shape:", data.shape)
+
+    data = data.drop_duplicates().reset_index(drop=True)
+
+    print("Shape after removing duplicates:", data.shape)
+
 
 if __name__ == "__main__":
     main()
